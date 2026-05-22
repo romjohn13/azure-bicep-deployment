@@ -13,7 +13,7 @@
                 "kind": "app"
             }
         },
-        "location": {
+        "locations": {
             "values": [
                 "southeastasia",
                 "eastasia",
