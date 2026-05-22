@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentversion": "1.0.0.0",
+    "parameters": {
+        "environmentType": {
+            "value": 
+                "nonprod"
+        },
+        "appServicePlanProperties": {
+            "values" : {
+                "tier": "basic",
+                "capacity": "1",
+                "kind": "app"
+            }
+        },
+        "location": {
+            "values": [
+                "southeastasia",
+                "eastasia",
+                "westeurope"
+            ]
+        } 
+    }
+}
