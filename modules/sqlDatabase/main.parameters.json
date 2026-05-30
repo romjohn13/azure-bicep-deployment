@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sqlServerAdministratorUsername": {
+            "reference":{
+                "keyvault": {
+                    "id": "/subscriptions/102da8cd-bc61-42fe-98f5-d44f3a6cbfcd/resourceGroups/noki-resource-group/providers/Microsoft.KeyVault/vaults/noki-kv2"
+                },
+                "secret": "sqlServerAdministratorUsername"
+            }
+        },
+        "sqlServerAdministratorPassword": {
+            "reference": {
+                "keyvault": {
+                    "id": "/subscriptions/102da8cd-bc61-42fe-98f5-d44f3a6cbfcd/resourceGroups/noki-resource-group/providers/Microsoft.KeyVault/vaults/noki-kv2"
+                },
+                "secret": "sqlServerAdministratorPassword"
+            }
+        }
+    }
+}
