@@ -5,9 +5,8 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  deploymentname: "AppService-Deploy-$(build.buildid)"
-  templatefile: "modules/appService/appService.bicep"
-  templateparameterfile: "modules/appService/main.parameters.json"
+  deploymentname: "StorageAcct-Deploy-$(build.buildid)"
+  templatefile: "modules/storageAccount/storageAccount.bicep"
 
 
 parameters:
@@ -29,7 +28,6 @@ steps:
       New-AzResourceGroupDeployment `
       -name "$(deploymentname)" `
       -Templatefile: "$(templatefile)" `
-      -TemplateParameterFile: "$(templateparameterfile)" `
       -ResourceGroupName: "$(resourceGroupName)" `
       -verbose
 
