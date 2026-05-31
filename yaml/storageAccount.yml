@@ -1,0 +1,35 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  deploymentname: "AppService-Deploy-$(build.buildid)"
+  templatefile: "modules/appService/appService.bicep"
+  templateparameterfile: "modules/appService/main.parameters.json"
+
+
+parameters:
+- name: environmentType
+  displayName: Storage Account Non-Prod or Prod
+  values:
+    - 'prod'
+    - 'nonprod'
+
+
+steps:
+- task: AzurePowerShell@5
+  displayName: 'Storage Account Bicep Deployment'
+  inputs:
+    azureSubscription: '$(serviceConnection)'
+    azurePowerShellVersion: LatestVersion
+    ScriptType: InlineScript
+    Inline: |
+      New-AzResourceGroupDeployment `
+      -name "$(deploymentname)" `
+      -Templatefile: "$(templatefile)" `
+      -TemplateParameterFile: "$(templateparameterfile)" `
+      -ResourceGroupName: "$(resourceGroupName)" `
+      -verbose
+
