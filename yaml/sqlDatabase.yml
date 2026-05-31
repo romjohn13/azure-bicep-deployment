@@ -1,0 +1,42 @@
+trigger: 
+- none
+
+pool:
+vmImage: ubuntu-latest
+
+
+variables:
+  deploymentname: "sqlDatabase-Deploy-$(build.buildid)"
+  templatefile: "modules/sqlDatabase/sqlDatabase.bicep"
+  templateparameterfile: "modules/sqlDatabase/main.parameters.json"
+
+parameters:
+- name: environmentType
+  displayName: Prod or Non-Prod Environment
+  type: string
+  values: 
+    - prod
+    - nonprod
+
+- name: auditStorageAccountName
+  displayName: Storage Account for Prod SQL Database (blank if NON-PROD)
+  type: string
+  default: ''
+
+
+steps:
+- task: AzurePowerShell@5
+  displayName: 'Sql Database Bicep Deployment'
+  inputs:
+    azureSubscription: '$(serviceConnection)'
+    azurePowerShellVersion: LatestVersion
+    ScriptType: InlineScript
+    Inline: |
+      New-AzResourceGroupDeployment `
+      -name "$(deploymentname)" `
+      -Templatefile: "$(templatefile)" `
+      -TemplateParameterFile: "$(templateparameterfile)" `
+      -ResourceGroupName: "$(resourceGroupName)" `
+      -verbose
+
+
