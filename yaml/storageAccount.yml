@@ -27,7 +27,7 @@ steps:
     Inline: |
       New-AzResourceGroupDeployment `
       -name "$(deploymentname)" `
-      -Templatefile: "$(templatefile)" `
-      -ResourceGroupName: "$(resourceGroupName)" `
+      -Templatefile "$(templatefile)" `
+      -ResourceGroupName "$(resourceGroupName)" `
+      -environmenttyp "${{parameters.environmentType}}" `
       -verbose
-

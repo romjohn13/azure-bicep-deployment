@@ -20,8 +20,8 @@ var resourceTags object = {
 
 
 resource DBstorageAccount 'Microsoft.Storage/storageAccounts@2026-04-01' = [ for i in range(0,2) :{
-  name: 'toyDBsta${environmentType}${resourceGroup().id}-${i}'
-  location: DBstorageAccountDetails.location
+  name: 'std${environmentType}${uniqueString(resourceGroup().id)}${i}'
+  location: DBstorageAccountDetails.locations
   sku: {
     name: DBstorageAccountDetails.sku
   }
@@ -34,8 +34,8 @@ resource DBstorageAccount 'Microsoft.Storage/storageAccounts@2026-04-01' = [ for
 ]
 
 resource regStorageAccount 'Microsoft.Storage/storageAccounts@2026-04-01' = [ for i in range(0,2) :{
-  name: 'toyREGsta${environmentType}${resourceGroup().id}-${i}'
-  location: DBstorageAccountDetails.location
+  name: 'str${environmentType}${uniqueString(resourceGroup().id)}${i}'
+  location: DBstorageAccountDetails.locations
   sku: {
     name: DBstorageAccountDetails.sku
   }
