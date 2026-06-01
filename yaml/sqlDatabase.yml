@@ -34,9 +34,10 @@ steps:
     Inline: |
       New-AzResourceGroupDeployment `
       -name "$(deploymentname)" `
-      -Templatefile: "$(templatefile)" `
-      -TemplateParameterFile: "$(templateparameterfile)" `
-      -ResourceGroupName: "$(resourceGroupName)" `
+      -Templatefile "$(templatefile)" `
+      -TemplateParameterFile "$(templateparameterfile)" `
+      -ResourceGroupName "$(resourceGroupName)" `
+      -auditStorageAccountName "${{parameters.default}}"
       -verbose
 
 
