@@ -18,17 +18,33 @@ var resourceTags object = {
   purpose: 'Gods Plan'
 }
 
+var storageAccountProperties object = {
+  nonprod: {
+    location: 'eastasia'
+    sku: 'Standard_GRS'
+    kind: 'StorageV2'
+    accesstier: 'Hot'
+  }
+    prod: {
+      locaion: 'southeastasia'
+      sku: 'Standard_LRS'
+      kind: 'StorageV2'
+      accesstier: 'Hot'
+  }
+}
+
+
 
 resource DBstorageAccount 'Microsoft.Storage/storageAccounts@2026-04-01' = [ for i in range(0,2) :{
   name: 'std${environmentType}${uniqueString(resourceGroup().id)}${i}'
-  location: DBstorageAccountDetails.locations
+  location: storageAccountProperties[environmentType].location
   sku: {
-    name: DBstorageAccountDetails.sku
+    name: storageAccountProperties[environmentType].sku
   }
   properties: {
-    accessTier: DBstorageAccountDetails.accesstier
+    accessTier: storageAccountProperties[environmentType].accesstier
   }
-  kind: DBstorageAccountDetails.kind
+  kind: storageAccountProperties[environmentType].kind
   tags: resourceTags
   }
 ]

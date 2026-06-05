@@ -1,0 +1,27 @@
+trigger:
+- none
+
+variables:
+  deploymentname: 'VirtualNetwork-$(build.buildid)'
+  templatefile: "module/VirtualNetwork/VirtualNetwork.bicep"
+  templateparameterfile: "module/virutalNetwork/main.parameters.json"
+
+pool:
+  vmimage: ubuntu-latest
+
+
+steps:
+- task: AzurePowerShell@5
+  displayName: 'Virtual Network Deployment'
+  inputs:
+    azurePowerShellVersion: latest
+    azureSubscription: '$(serviceConnection)'
+    ScriptType: InlineScript
+    Inline: |
+        New-AzResourceGroupDeployment `
+        -Name "$(deploymentname)" `
+        -TemplateFile "$(templatefile)" `
+        -TemplateParameterFile "$(templateparameterfile)" `
+        -ResourceGroupName "$(resourceGroupName)"" `
+        -verbose
+  

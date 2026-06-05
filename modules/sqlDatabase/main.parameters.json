@@ -4,18 +4,18 @@
     "parameters": {
         "sqlServerAdministratorUsername": {
             "reference":{
-                "keyvault": {
+                "keyVault": {
                     "id": "/subscriptions/102da8cd-bc61-42fe-98f5-d44f3a6cbfcd/resourceGroups/noki-resource-group/providers/Microsoft.KeyVault/vaults/noki-kv2"
                 },
-                "secret": "sqlServerAdministratorUsername"
+                "secretName": "sqlServerAdministratorLogin"
             }
         },
         "sqlServerAdministratorPassword": {
             "reference": {
-                "keyvault": {
+                "keyVault": {
                     "id": "/subscriptions/102da8cd-bc61-42fe-98f5-d44f3a6cbfcd/resourceGroups/noki-resource-group/providers/Microsoft.KeyVault/vaults/noki-kv2"
                 },
-                "secret": "sqlServerAdministratorPassword"
+                "secretName": "sqlServerAdministratorPassword"
             }
         }
     }

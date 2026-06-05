@@ -1,0 +1,58 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetlist": {
+            "value": [
+                {
+                    "name": "toy",
+                    "location": "southeastasia",
+                    "addressSpace": "10.0.0.0/16",
+                    "environmentType": "prod",
+                    "subnet": [
+                        {
+                            "name": "VM",
+                            "ipAddressRange": "10.0.1.0/24"
+                        },
+                        {
+                            "name": "VMSS",
+                            "ipAddressRange": "10.0.2.0/24"
+                        },
+                        {
+                            "name": "Database",
+                            "ipAddressRange": "10.0.3.0/24"
+                        },
+                        {
+                            "name": "AzureFirewallSubnet",
+                            "ipAddressRange": "10.0.4.0/24"
+                        }                        
+                    ]
+                },
+                {
+                    "name": "toy",
+                    "location": "eastasia",
+                    "addressSpace": "10.1.0.0/16",
+                    "environmentType": "nonprod",
+                    "subnet": [
+                        {
+                            "name": "VM-nonprod",
+                            "ipAddressRange": "10.1.1.0/24"
+                        },
+                        {
+                            "name": "VMSS-nonprod",
+                            "ipAddressRange": "10.1.2.0/24"
+                        },
+                        {
+                            "name": "Database-nonprod",
+                            "ipAddressRange": "10.1.3.0/24"
+                        },
+                        {
+                            "name": "AzureFirewallSubnet",
+                            "ipAddressRange": "10.1.4.0/24"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

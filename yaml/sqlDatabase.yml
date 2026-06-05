@@ -21,7 +21,7 @@ parameters:
 - name: auditStorageAccountName
   displayName: Storage Account for Prod SQL Database (blank if NON-PROD)
   type: string
-  default: ''
+  default: ' '
 
 
 steps:

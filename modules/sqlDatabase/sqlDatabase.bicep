@@ -20,7 +20,7 @@ var AuditingEnabled = environmentType == 'prod'
 
 
 resource sqlServer 'Microsoft.Sql/servers@2025-02-01-preview' = {
-  name: '$toy-sql-${environmentType}'
+  name: 'toy-sql-${environmentType}'
   location: location
   properties: {
     administratorLogin: sqlServerAdministratorUsername
@@ -44,7 +44,7 @@ resource auditStorageAccount 'Microsoft.Storage/storageAccounts@2026-04-01' exis
   name: auditStorageAccountName
 }
 
-resource sqlServerAudit 'Microsoft.Sql/servers/auditingSettings@2025-02-01-preview' = {
+resource sqlServerAudit 'Microsoft.Sql/servers/auditingSettings@2025-02-01-preview' = if (AuditingEnabled) {
   parent: sqlServer
   name: 'default'
   properties: {
